@@ -179,6 +179,42 @@
   }
   .qa-a strong { color: var(--blue); }
 
+  /* フロー図 */
+  .flow { margin: 16px 0; }
+  .flow-step {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    color: white;
+  }
+  .flow-blue { background: var(--blue); }
+  .flow-orange { background: #f57c00; }
+  .flow-green { background: var(--green); }
+  .flow-num {
+    width: 36px;
+    height: 36px;
+    background: rgba(255,255,255,0.25);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1em;
+    flex-shrink: 0;
+  }
+  .flow-content { flex: 1; }
+  .flow-title { font-weight: 700; font-size: 1.05em; }
+  .flow-desc { font-size: 0.8em; opacity: 0.9; margin-top: 2px; }
+  .flow-arrow {
+    text-align: center;
+    color: #bdbdbd;
+    font-size: 1.2em;
+    padding: 4px 0;
+    line-height: 1;
+  }
+
   /* セクション区切り */
   .divider {
     height: 4px;
@@ -270,15 +306,47 @@
 
 <div class="card">
   <h2><span class="icon">📝</span> 予約の流れ</h2>
-  <img src="flow.png" alt="予約の流れ" style="width:100%; border-radius:12px; margin: 8px 0 16px;">
-
-  <ol class="steps">
-    <li>サイトで施設・日時を選んで <strong>予約申込</strong><br>（この時点では <strong>仮予約</strong> です）</li>
-    <li><strong>施設管理者が内容を確認・承認</strong><br>→ 承認されると <strong>メールが届きます</strong></li>
-    <li>マイページのステータスが<br><strong>「予約確定」</strong> に変わったことを確認</li>
-    <li>確定後に <strong>支払い</strong><br>（前払い or 当日窓口）</li>
-    <li><strong>利用日当日</strong></li>
-  </ol>
+  <div class="flow">
+    <div class="flow-step flow-blue">
+      <div class="flow-num">1</div>
+      <div class="flow-content">
+        <div class="flow-title">予約申込</div>
+        <div class="flow-desc">施設・日時を選択</div>
+      </div>
+    </div>
+    <div class="flow-arrow">▼</div>
+    <div class="flow-step flow-orange">
+      <div class="flow-num">2</div>
+      <div class="flow-content">
+        <div class="flow-title">仮予約</div>
+        <div class="flow-desc">この時点ではまだ未確定</div>
+      </div>
+    </div>
+    <div class="flow-arrow">▼</div>
+    <div class="flow-step flow-blue">
+      <div class="flow-num">3</div>
+      <div class="flow-content">
+        <div class="flow-title">施設が承認</div>
+        <div class="flow-desc">承認されるとメールが届く</div>
+      </div>
+    </div>
+    <div class="flow-arrow">▼</div>
+    <div class="flow-step flow-green">
+      <div class="flow-num">4</div>
+      <div class="flow-content">
+        <div class="flow-title">予約確定 ✓</div>
+        <div class="flow-desc">マイページでステータスを確認</div>
+      </div>
+    </div>
+    <div class="flow-arrow">▼</div>
+    <div class="flow-step flow-blue">
+      <div class="flow-num">5</div>
+      <div class="flow-content">
+        <div class="flow-title">支払い</div>
+        <div class="flow-desc">前払い or 当日施設窓口</div>
+      </div>
+    </div>
+  </div>
   <div class="alert alert-warn">
     <strong>⚠️ 予約ボタンを押しただけでは確定ではありません。</strong><br>
     施設管理者の承認後に届くメールを必ず確認してください。
