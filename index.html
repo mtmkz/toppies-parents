@@ -39,9 +39,9 @@
     border-radius: 0 0 32px 32px;
     margin-bottom: 20px;
   }
-  header .emoji { font-size: 2.5em; margin-bottom: 8px; display: block; }
-  header h1 { font-size: 1.3em; font-weight: 800; letter-spacing: 0.02em; }
-  header .sub { font-size: 0.85em; opacity: 0.85; margin-top: 6px; }
+  header .emoji { font-size: 3.5em; margin-bottom: 12px; display: block; }
+  header h1 { font-size: 1.8em; font-weight: 800; letter-spacing: 0.02em; }
+  header .sub { font-size: 1.05em; opacity: 0.9; margin-top: 8px; font-weight: 500; }
 
   /* カード */
   .card {
@@ -199,7 +199,7 @@
 
   @media (max-width: 480px) {
     header { padding: 32px 16px 24px; }
-    header h1 { font-size: 1.15em; }
+    header h1 { font-size: 1.5em; }
     .card { padding: 20px 16px; }
     .steps li { padding-left: 48px; }
     .steps li::before { width: 28px; height: 28px; line-height: 28px; font-size: 0.8em; }
@@ -270,6 +270,8 @@
 
 <div class="card">
   <h2><span class="icon">📝</span> 予約の流れ</h2>
+  <img src="flow.png" alt="予約の流れ" style="width:100%; border-radius:12px; margin: 8px 0 16px;">
+
   <ol class="steps">
     <li>サイトで施設・日時を選んで <strong>予約申込</strong><br>（この時点では <strong>仮予約</strong> です）</li>
     <li><strong>施設管理者が内容を確認・承認</strong><br>→ 承認されると <strong>メールが届きます</strong></li>
