@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>石垣市公共施設予約システム — 父母向けまとめ</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif; color: #333; background: #f5f5f5; line-height: 1.8; }
+  .container { max-width: 720px; margin: 0 auto; padding: 16px; }
+  header { background: linear-gradient(135deg, #1a73e8, #0d47a1); color: white; padding: 32px 20px; text-align: center; }
+  header h1 { font-size: 1.4em; font-weight: 700; margin-bottom: 8px; }
+  header p { font-size: 0.85em; opacity: 0.9; }
+  .card { background: white; border-radius: 12px; padding: 24px; margin: 16px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .card h2 { font-size: 1.15em; color: #1a73e8; border-bottom: 2px solid #1a73e8; padding-bottom: 8px; margin-bottom: 16px; }
+  .card h3 { font-size: 1em; color: #333; margin: 16px 0 8px; }
+  .alert { background: #fff3e0; border-left: 4px solid #ff9800; padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 12px 0; font-size: 0.95em; }
+  .alert-danger { background: #fce4ec; border-left-color: #e53935; }
+  .alert strong { color: #e65100; }
+  .alert-danger strong { color: #c62828; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.9em; }
+  th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+  th { background: #f5f5f5; font-weight: 600; white-space: nowrap; }
+  td strong { color: #1a73e8; }
+  ul, ol { padding-left: 20px; margin: 8px 0; }
+  li { margin: 6px 0; }
+  .steps { counter-reset: step; list-style: none; padding-left: 0; }
+  .steps li { position: relative; padding-left: 40px; margin: 16px 0; }
+  .steps li::before { counter-increment: step; content: counter(step); position: absolute; left: 0; top: 0; width: 28px; height: 28px; background: #1a73e8; color: white; border-radius: 50%; text-align: center; line-height: 28px; font-weight: 700; font-size: 0.85em; }
+  .ok-ng { display: flex; gap: 12px; margin: 12px 0; flex-wrap: wrap; }
+  .ok-box, .ng-box { flex: 1; min-width: 200px; padding: 12px 16px; border-radius: 8px; font-size: 0.9em; }
+  .ok-box { background: #e8f5e9; border: 1px solid #4caf50; }
+  .ng-box { background: #fce4ec; border: 1px solid #e53935; }
+  .ok-box::before { content: "OK"; font-weight: 700; color: #2e7d32; display: block; margin-bottom: 4px; }
+  .ng-box::before { content: "NG"; font-weight: 700; color: #c62828; display: block; margin-bottom: 4px; }
+  .qa { margin: 12px 0; }
+  .qa-item { border-bottom: 1px solid #eee; padding: 12px 0; }
+  .qa-q { font-weight: 700; color: #1a73e8; margin-bottom: 4px; font-size: 0.95em; }
+  .qa-q::before { content: "Q. "; }
+  .qa-a { padding-left: 8px; font-size: 0.9em; color: #555; }
+  .qa-a::before { content: "A. "; font-weight: 600; color: #333; }
+  .note { background: #e3f2fd; padding: 12px 16px; border-radius: 8px; font-size: 0.85em; margin: 12px 0; }
+  footer { text-align: center; padding: 24px; font-size: 0.75em; color: #999; }
+  @media (max-width: 480px) {
+    header h1 { font-size: 1.2em; }
+    .card { padding: 16px; }
+    .ok-ng { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>石垣市公共施設予約システム</h1>
+  <p>父母向けまとめ（トッピーズ）</p>
+</header>
+
+<div class="container">
+
+<!-- 要約 -->
+<div class="card">
+  <h2>要約</h2>
+  <ul>
+    <li><strong>4月1日（水）朝9時</strong>から、体育館などのスポーツ施設がオンラインで予約できるようになります</li>
+    <li><strong>4月8日以降</strong>の利用分からオンライン予約の対象です（4/1〜4/6は従来通り窓口・LINEで予約）</li>
+    <li>トッピーズのアカウントは<strong>新城会長が作成します</strong>（父母の皆さんが個別に登録する必要はありません）</li>
+    <li><strong>毎月25日 朝9時</strong>に翌月分の予約が先着順で解禁されます</li>
+  </ul>
+</div>
+
+<!-- 予約開始日 -->
+<div class="card">
+  <h2>予約開始日</h2>
+  <table>
+    <tr><th>日付</th><th>内容</th></tr>
+    <tr><td><strong>4/1（水）09:00</strong></td><td>オンライン予約スタート（4/8以降の利用分が対象）</td></tr>
+    <tr><td>4/1〜4/6の利用分</td><td>従来通り <strong>窓口・LINE</strong> で予約</td></tr>
+    <tr><td><strong>毎月25日 09:00</strong></td><td>翌月分の予約受付開始（先着順）</td></tr>
+    <tr><td>4月中旬〜</td><td>オンライン決済（クレジット・コンビニ・PayPay）順次開始</td></tr>
+  </table>
+  <h3>毎月25日の予約について</h3>
+  <ul>
+    <li>9時00分00秒にならないと予約ボタンが押せません</li>
+    <li>事前にサイトを開いて待つことはできますが、ボタンが押せるのは9時ジャストからです</li>
+    <li>「朝5時にしてほしい」等の声が多く、5月以降アンケートで変更を検討する予定です</li>
+  </ul>
+</div>
+
+<!-- 抽選 -->
+<div class="card">
+  <h2>抽選について（部活動チーム向け）</h2>
+  <div class="alert-danger alert">
+    <strong>注意：4月分は抽選を行いません。</strong> 4月は全て先着順です。抽選は<strong>5月分から</strong>開始予定です。
+  </div>
+  <h3>誰が対象？</h3>
+  <p>小中高の<strong>部活動チーム</strong>が対象です。</p>
+  <h3>どうやって決まる？</h3>
+  <ol>
+    <li>各部活チームが希望の日時を申請</li>
+    <li>抽選が行われ、当選した枠が確保される</li>
+    <li>目安として <strong>1チームあたり週1回程度</strong>（メイン1回 or サブ1回）</li>
+  </ol>
+  <h3>抽選で外れたら？</h3>
+  <p>抽選後に埋まらなかった残り枠は、<strong>毎月25日 朝9時に一般開放</strong>されます。部活チームも<strong>同じ条件</strong>で空き枠を予約できます。</p>
+  <p>つまり、抽選で月2回しか当たらなくても、一般開放で追加の練習枠を取れる可能性があります。</p>
+</div>
+
+<!-- 予約の流れ -->
+<div class="card">
+  <h2>予約の流れ</h2>
+  <ol class="steps">
+    <li>サイトで施設・日時を選んで <strong>予約申込</strong>（この時点では<strong>仮予約</strong>です）</li>
+    <li><strong>施設管理者が内容を確認・承認</strong> → 承認されると<strong>メールが届きます</strong></li>
+    <li>マイページのステータスが <strong>「予約確定」</strong> に変わったことを確認</li>
+    <li>確定後に <strong>支払い</strong>（前払い or 当日窓口）</li>
+    <li>利用日当日</li>
+  </ol>
+  <div class="alert">
+    <strong>予約ボタンを押しただけでは確定ではありません。</strong>施設管理者の承認後に届くメールを必ず確認してください。
+  </div>
+</div>
+
+<!-- 予約ルール -->
+<div class="card">
+  <h2>予約ルール</h2>
+  <h3>1団体1アカウントが絶対ルール</h3>
+  <p>例えば10人のバスケチームの保護者が、それぞれ個人アカウントで別々に予約を取ったとします。全員が集まれる日は結局1日だけなのに、残り9枠が無駄に埋まってしまいます。他の団体が予約できなくなるので、<strong>必ずチームで1つのアカウント</strong>を使ってください。</p>
+  <p>悪質な場合は <strong>利用制限やアカウント停止</strong> になる可能性があります。</p>
+
+  <div class="ok-ng">
+    <div class="ok-box">団体アカウントを父母で共有し、手が空いている人が代表して予約する。担当者名は予約のたびに変更可能。複数人が同時にログインして操作することもシステム上可能です。</div>
+    <div class="ng-box">父母がそれぞれ個人アカウントを作って枠を一斉に押さえる。</div>
+  </div>
+
+  <h3>利用回数の制限</h3>
+  <p>現時点では制限なし。空いていれば週に何回でも予約できます。ただし、予約は施設側の承認制になっており、一つの団体があからさまに多くの枠を押さえるなど悪質な使い方があれば承認段階で検出され、利用制限や停止になる可能性があります。</p>
+</div>
+
+<!-- キャンセルと返金 -->
+<div class="card">
+  <h2>キャンセルと返金</h2>
+  <h3>部分予約（通常の練習利用）</h3>
+  <p>体育館のコートを <strong>他の団体とシェアして使う</strong> 方式。日常のバスケ練習は基本これです。</p>
+  <p><strong>支払いについて：</strong></p>
+  <ul>
+    <li>予約時にシステム上で器具利用料＋予定人数分の料金が表示され、<strong>オンラインで前払い可能</strong>です</li>
+    <li>ただし人数が当日まで確定しない場合は、<strong>まとめて当日施設窓口で支払う方が便利</strong>です</li>
+    <li>前払い済みで、当日に人数が増えた場合は、増えた分を窓口で追加支払いします</li>
+    <li><strong>キャンセルしても返金はありません</strong>（注意！）</li>
+  </ul>
+
+  <h3>貸切（大会・イベント向け）</h3>
+  <p>アリーナや施設全体を <strong>1団体で独占して使う</strong> 方式。</p>
+  <ul>
+    <li>申請書の記入が必要</li>
+    <li>利用料は <strong>5日前までに前納</strong></li>
+    <li><strong>5日前までにキャンセルすれば返金可能</strong></li>
+  </ul>
+
+  <h3>キャンセル枠の再開放</h3>
+  <p>キャンセルが出たら <strong>すぐに空き枠として開放</strong> されます。こまめにチェックしましょう。</p>
+</div>
+
+<!-- Q&A -->
+<div class="card">
+  <h2>よくある質問（Q&A）</h2>
+
+  <h3>アカウント・予約</h3>
+  <div class="qa">
+    <div class="qa-item">
+      <div class="qa-q">アカウントは誰が作るの？</div>
+      <div class="qa-a">新城会長がトッピーズとして団体アカウントを作成します。父母が個別にアカウントを作る必要はありません。</div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q">保護者が個別にアカウントを作って一斉に取ってもいい？</div>
+      <div class="qa-a">NGです。1団体1アカウントが原則。個別に取ると枠の無駄遣いになり、悪質な場合はアカウント停止になります。</div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q">間違って予約してしまったらどうなる？</div>
+      <div class="qa-a">マイページからキャンセルできます。ただし部分予約（通常練習）の場合は返金されないので、予約前によく確認してください。</div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q">複数の保護者が同時に予約操作して重複したら？</div>
+      <div class="qa-a">1アカウントを共有して使うため、同時に同じ枠を取ることはありません。</div>
+    </div>
+  </div>
+
+  <h3>抽選・練習枠</h3>
+  <div class="qa">
+    <div class="qa-item">
+      <div class="qa-q">4月分は抽選がある？</div>
+      <div class="qa-a"><strong>ありません。</strong> 4月分は全て一般開放の先着順です。抽選は5月分から開始予定です。</div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q">抽選で外れたらその月は練習できないの？</div>
+      <div class="qa-a">いいえ。抽選後の残り枠は毎月25日に一般開放されるので、そこで追加予約できます。</div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q">通常練習は「部分予約」と「貸切」どっち？</div>
+      <div class="qa-a">通常練習は <strong>部分予約</strong> です。貸切は大会やイベントの時だけ使います。</div>
+    </div>
+  </div>
+
+  <h3>支払い</h3>
+  <div class="qa">
+    <div class="qa-item">
+      <div class="qa-q">支払いはどうやるの？</div>
+      <div class="qa-a">システム上ではオンライン前払い（器具利用料＋予定人数分）が可能ですが、人数が当日まで確定しない場合は<strong>当日施設窓口でまとめて支払う方が便利</strong>です。前払い済みで当日に人数が増えた場合は、増えた分を窓口で追加支払いします。</div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q">当日まで人数が確定しないけど大丈夫？</div>
+      <div class="qa-a">大丈夫です。当日の実人数で施設窓口にて精算できます。</div>
+    </div>
+  </div>
+
+  <h3>その他</h3>
+  <div class="qa">
+    <div class="qa-item">
+      <div class="qa-q">キャンセルが出たらすぐ分かる？</div>
+      <div class="qa-a">キャンセルが出た瞬間に空き枠として開放されます。こまめに空き状況をチェックしましょう。</div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q">誰が予約しているか分かる？</div>
+      <div class="qa-a">公開されません。空き状況（埋まっているか空いているか）だけが見えます。</div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q">アカウントがなくても空き状況は確認できる？</div>
+      <div class="qa-a">はい。予約サイトから施設・月を選べば、今すぐでも確認できます。12ヶ月先まで閲覧可能。</div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<footer>
+  2026年3月24日 新オンライン予約システム利用者向け説明会（第2部）の内容をもとに作成<br>
+  詳細は配布の説明資料PDFもご覧ください。
+</footer>
+
+</body>
+</html>
