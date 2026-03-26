@@ -803,6 +803,9 @@
       const botDiv = document.createElement('div');
       botDiv.className = 'chat-bot';
       const answerHtml = (data.answer || data.error || 'エラーが発生しました。')
+        .replace(/\*\*/g, '')
+        .replace(/^#{1,3}\s/gm, '')
+        .replace(/^[>\-\*]\s/gm, '・')
         .replace(/\n/g, '<br>');
       botDiv.innerHTML = '<span class="bot-avatar">🏀</span><div class="bot-bubble">' + answerHtml + '</div>';
       messages.appendChild(botDiv);
