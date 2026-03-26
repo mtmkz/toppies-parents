@@ -498,6 +498,223 @@
 
 </div>
 
+<!-- AIチャットウィジェット -->
+<div id="chat-fab" onclick="toggleChat()" title="質問する">💬</div>
+<div id="chat-panel" style="display:none;">
+  <div id="chat-header">
+    <span>🤖 予約システム Q&A</span>
+    <span id="chat-close" onclick="toggleChat()">✕</span>
+  </div>
+  <div id="chat-messages">
+    <div class="chat-bot">説明会の内容をもとに、予約システムについての質問にお答えします。お気軽にどうぞ！</div>
+  </div>
+  <div id="chat-input-area">
+    <input type="text" id="chat-input" placeholder="質問を入力..." maxlength="500" onkeydown="if(event.key==='Enter')sendQuestion()">
+    <button id="chat-send" onclick="sendQuestion()">送信</button>
+  </div>
+  <div id="chat-disclaimer">※ AIによる回答です。正確な情報はスポーツ振興課にご確認ください。</div>
+</div>
+
+<style>
+  #chat-fab {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    background: var(--navy);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    z-index: 1000;
+    transition: transform 0.2s;
+    border: 3px solid var(--gold);
+  }
+  #chat-fab:hover { transform: scale(1.1); }
+
+  #chat-panel {
+    position: fixed;
+    bottom: 92px;
+    right: 16px;
+    width: 340px;
+    max-width: calc(100vw - 32px);
+    max-height: 480px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 2px solid var(--gold);
+  }
+  #chat-header {
+    background: var(--navy);
+    color: white;
+    padding: 14px 16px;
+    font-weight: 700;
+    font-size: 0.9em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #chat-close { cursor: pointer; font-size: 1.2em; opacity: 0.7; }
+  #chat-close:hover { opacity: 1; }
+
+  #chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px;
+    min-height: 200px;
+    max-height: 320px;
+    background: #fafafa;
+  }
+  .chat-user, .chat-bot {
+    margin: 8px 0;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 0.85em;
+    line-height: 1.7;
+    max-width: 90%;
+    word-wrap: break-word;
+  }
+  .chat-user {
+    background: var(--navy);
+    color: white;
+    margin-left: auto;
+    border-bottom-right-radius: 4px;
+  }
+  .chat-bot {
+    background: white;
+    color: var(--text);
+    border: 1px solid #e0e0e0;
+    border-bottom-left-radius: 4px;
+  }
+  .chat-loading {
+    color: var(--text-light);
+    font-style: italic;
+  }
+
+  #chat-input-area {
+    display: flex;
+    padding: 10px 12px;
+    gap: 8px;
+    border-top: 1px solid #e0e0e0;
+    background: white;
+  }
+  #chat-input {
+    flex: 1;
+    border: 1px solid #d0d0d0;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 0.85em;
+    outline: none;
+    font-family: inherit;
+  }
+  #chat-input:focus { border-color: var(--gold); }
+  #chat-send {
+    background: var(--navy);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 0.85em;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  #chat-send:hover { background: var(--navy-light); }
+  #chat-send:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  #chat-disclaimer {
+    padding: 6px 12px 8px;
+    font-size: 0.7em;
+    color: var(--text-light);
+    text-align: center;
+    background: white;
+  }
+
+  @media (max-width: 480px) {
+    #chat-panel {
+      bottom: 80px;
+      right: 8px;
+      left: 8px;
+      width: auto;
+    }
+  }
+</style>
+
+<script>
+  const WORKER_URL = 'https://toppies-qa.tomokz.workers.dev';
+
+  function toggleChat() {
+    const panel = document.getElementById('chat-panel');
+    panel.style.display = panel.style.display === 'none' ? 'flex' : 'none';
+    if (panel.style.display === 'flex') {
+      document.getElementById('chat-input').focus();
+    }
+  }
+
+  async function sendQuestion() {
+    const input = document.getElementById('chat-input');
+    const question = input.value.trim();
+    if (!question) return;
+
+    const messages = document.getElementById('chat-messages');
+    const sendBtn = document.getElementById('chat-send');
+
+    // ユーザーメッセージ表示
+    const userDiv = document.createElement('div');
+    userDiv.className = 'chat-user';
+    userDiv.textContent = question;
+    messages.appendChild(userDiv);
+
+    input.value = '';
+    input.disabled = true;
+    sendBtn.disabled = true;
+
+    // ローディング表示
+    const loadingDiv = document.createElement('div');
+    loadingDiv.className = 'chat-bot chat-loading';
+    loadingDiv.textContent = '回答を準備しています...';
+    messages.appendChild(loadingDiv);
+    messages.scrollTop = messages.scrollHeight;
+
+    try {
+      const res = await fetch(WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question }),
+      });
+      const data = await res.json();
+
+      loadingDiv.remove();
+
+      const botDiv = document.createElement('div');
+      botDiv.className = 'chat-bot';
+      botDiv.innerHTML = (data.answer || data.error || 'エラーが発生しました。')
+        .replace(/\n/g, '<br>')
+        .replace(/説明会での発言[:：]/g, '<br><strong style="color:var(--gold-dark);">📝 説明会での発言：</strong><br>');
+      messages.appendChild(botDiv);
+    } catch (e) {
+      loadingDiv.remove();
+      const errDiv = document.createElement('div');
+      errDiv.className = 'chat-bot';
+      errDiv.textContent = '通信エラーが発生しました。しばらくしてから再度お試しください。';
+      messages.appendChild(errDiv);
+    }
+
+    input.disabled = false;
+    sendBtn.disabled = false;
+    input.focus();
+    messages.scrollTop = messages.scrollHeight;
+  }
+</script>
+
 <footer>
   2026年3月24日 新オンライン予約システム利用者向け説明会（第2部）の内容をもとに作成<br>
   詳細は配布の説明資料PDFもご覧ください。
