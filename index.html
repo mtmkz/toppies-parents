@@ -509,11 +509,18 @@
 </div>
 <div id="chat-panel" style="display:none;">
   <div id="chat-header">
-    <span>🤖 予約システム Q&A</span>
+    <span>🏀 予約システム Q&A</span>
     <span id="chat-close" onclick="toggleChat()">✕</span>
   </div>
   <div id="chat-messages">
-    <div class="chat-bot">説明会の内容をもとに、予約システムについての質問にお答えします。お気軽にどうぞ！</div>
+    <div class="chat-bot"><span class="bot-avatar">🏀</span><div class="bot-bubble">こんにちは！予約システムについて何でも聞いてね 😊<br>説明会の内容をもとにお答えします！</div></div>
+    <div id="chat-suggestions">
+      <div class="suggest-label">💡 こんな質問ができます：</div>
+      <button class="suggest-btn" onclick="askSuggestion(this)">予約はいつからできる？</button>
+      <button class="suggest-btn" onclick="askSuggestion(this)">支払いは当日払いできる？</button>
+      <button class="suggest-btn" onclick="askSuggestion(this)">抽選はどうやって決まる？</button>
+      <button class="suggest-btn" onclick="askSuggestion(this)">アカウントは誰が作る？</button>
+    </div>
   </div>
   <div id="chat-input-area">
     <input type="text" id="chat-input" placeholder="質問を入力..." maxlength="500" onkeydown="if(event.key==='Enter')sendQuestion()">
@@ -610,33 +617,83 @@
     padding: 12px;
     min-height: 200px;
     max-height: 320px;
-    background: #fafafa;
-  }
-  .chat-user, .chat-bot {
-    margin: 8px 0;
-    padding: 10px 14px;
-    border-radius: 12px;
-    font-size: 0.85em;
-    line-height: 1.7;
-    max-width: 90%;
-    word-wrap: break-word;
+    background: #e8e4de;
   }
   .chat-user {
-    background: var(--navy);
+    margin: 8px 0;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .user-bubble {
+    background: #5cc66a;
     color: white;
-    margin-left: auto;
-    border-bottom-right-radius: 4px;
+    padding: 10px 14px;
+    border-radius: 16px 16px 4px 16px;
+    font-size: 0.85em;
+    line-height: 1.7;
+    max-width: 80%;
+    word-wrap: break-word;
   }
   .chat-bot {
+    margin: 8px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .bot-avatar {
+    width: 36px;
+    height: 36px;
+    background: var(--navy);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1em;
+    flex-shrink: 0;
+  }
+  .bot-bubble {
     background: white;
     color: var(--text);
-    border: 1px solid #e0e0e0;
-    border-bottom-left-radius: 4px;
+    padding: 10px 14px;
+    border-radius: 16px 16px 16px 4px;
+    font-size: 0.85em;
+    line-height: 1.7;
+    max-width: 80%;
+    word-wrap: break-word;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.08);
   }
-  .chat-loading {
+  .chat-loading .bot-bubble {
     color: var(--text-light);
     font-style: italic;
   }
+
+  /* 質問候補ボタン */
+  #chat-suggestions {
+    margin: 8px 0 4px;
+    padding: 0 4px;
+  }
+  .suggest-label {
+    font-size: 0.75em;
+    color: var(--text-light);
+    margin-bottom: 6px;
+  }
+  .suggest-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: white;
+    border: 1.5px solid var(--gold);
+    border-radius: 20px;
+    padding: 8px 14px;
+    margin: 5px 0;
+    font-size: 0.8em;
+    color: var(--navy);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+    font-family: inherit;
+  }
+  .suggest-btn:hover { background: var(--gold-bg); }
 
   #chat-input-area {
     display: flex;
@@ -699,6 +756,11 @@
     }
   }
 
+  function askSuggestion(btn) {
+    document.getElementById('chat-input').value = btn.textContent;
+    sendQuestion();
+  }
+
   async function sendQuestion() {
     const input = document.getElementById('chat-input');
     const question = input.value.trim();
@@ -707,10 +769,14 @@
     const messages = document.getElementById('chat-messages');
     const sendBtn = document.getElementById('chat-send');
 
+    // 質問候補を非表示
+    const suggestions = document.getElementById('chat-suggestions');
+    if (suggestions) suggestions.style.display = 'none';
+
     // ユーザーメッセージ表示
     const userDiv = document.createElement('div');
     userDiv.className = 'chat-user';
-    userDiv.textContent = question;
+    userDiv.innerHTML = '<div class="user-bubble">' + question.replace(/</g,'&lt;') + '</div>';
     messages.appendChild(userDiv);
 
     input.value = '';
@@ -720,7 +786,7 @@
     // ローディング表示
     const loadingDiv = document.createElement('div');
     loadingDiv.className = 'chat-bot chat-loading';
-    loadingDiv.textContent = '回答を準備しています...';
+    loadingDiv.innerHTML = '<span class="bot-avatar">🏀</span><div class="bot-bubble">入力中...</div>';
     messages.appendChild(loadingDiv);
     messages.scrollTop = messages.scrollHeight;
 
@@ -736,15 +802,15 @@
 
       const botDiv = document.createElement('div');
       botDiv.className = 'chat-bot';
-      botDiv.innerHTML = (data.answer || data.error || 'エラーが発生しました。')
-        .replace(/\n/g, '<br>')
-        .replace(/説明会での発言[:：]/g, '<br><strong style="color:var(--gold-dark);">📝 説明会での発言：</strong><br>');
+      const answerHtml = (data.answer || data.error || 'エラーが発生しました。')
+        .replace(/\n/g, '<br>');
+      botDiv.innerHTML = '<span class="bot-avatar">🏀</span><div class="bot-bubble">' + answerHtml + '</div>';
       messages.appendChild(botDiv);
     } catch (e) {
       loadingDiv.remove();
       const errDiv = document.createElement('div');
       errDiv.className = 'chat-bot';
-      errDiv.textContent = '通信エラーが発生しました。しばらくしてから再度お試しください。';
+      errDiv.innerHTML = '<span class="bot-avatar">🏀</span><div class="bot-bubble">⚠️ 通信エラーが発生しました。しばらくしてから再度お試しください。</div>';
       messages.appendChild(errDiv);
     }
 
