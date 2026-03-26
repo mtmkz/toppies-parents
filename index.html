@@ -12,25 +12,25 @@
     --gold: #c5a55a;
     --gold-light: #d4bc7e;
     --gold-dark: #a08540;
-    --gold-bg: rgba(197,165,90,0.1);
-    --blue: #c5a55a;
-    --blue-light: rgba(197,165,90,0.1);
-    --green: #4caf50;
-    --green-light: rgba(76,175,80,0.1);
-    --red: #ef5350;
-    --red-light: rgba(239,83,80,0.1);
-    --orange: #ff9800;
-    --orange-light: rgba(255,152,0,0.1);
-    --gray: #0d1b30;
-    --text: #e8e8e8;
-    --text-light: #a0a8b8;
+    --gold-bg: rgba(197,165,90,0.08);
+    --blue: #0a1628;
+    --blue-light: rgba(10,22,40,0.05);
+    --green: #2e7d32;
+    --green-light: #e8f5e9;
+    --red: #c62828;
+    --red-light: #fce4ec;
+    --orange: #e65100;
+    --orange-light: #fff3e0;
+    --gray: #f8f9fa;
+    --text: #212121;
+    --text-light: #616161;
     --radius: 16px;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
     color: var(--text);
-    background: var(--navy);
+    background: var(--gray);
     line-height: 1.9;
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
@@ -45,7 +45,7 @@
     text-align: center;
     border-radius: 0 0 32px 32px;
     margin-bottom: 20px;
-    border-bottom: 3px solid var(--gold);
+    border-bottom: 4px solid var(--gold);
   }
   header .logo { max-width: 320px; width: 80%; margin-bottom: 12px; border-radius: 8px; }
   header .emoji { font-size: 3.5em; margin-bottom: 12px; display: block; }
@@ -54,12 +54,12 @@
 
   /* カード */
   .card {
-    background: var(--navy-mid);
+    background: white;
     border-radius: var(--radius);
     padding: 24px 20px;
     margin: 16px 0;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-    border: 1px solid rgba(197,165,90,0.15);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    border-top: 3px solid var(--navy);
   }
   .card h2 {
     font-size: 1.1em;
@@ -70,13 +70,13 @@
     margin-bottom: 16px;
     padding-bottom: 10px;
     border-bottom: 3px solid var(--gold);
-    color: var(--gold);
+    color: var(--navy);
   }
   .card h2 .icon { font-size: 1.3em; }
   .card h3 {
     font-size: 0.95em;
     font-weight: 700;
-    color: var(--gold-light);
+    color: var(--navy);
     margin: 20px 0 8px;
     padding-left: 4px;
     border-left: 4px solid var(--gold);
@@ -85,28 +85,28 @@
   .card p { margin: 8px 0; color: var(--text); font-size: 0.95em; }
   .card ul, .card ol { padding-left: 20px; margin: 8px 0; }
   .card li { margin: 8px 0; font-size: 0.95em; }
-  .card li strong { color: var(--gold); }
+  .card li strong { color: var(--navy); }
 
   /* 要約リスト */
   .summary-list { list-style: none; padding: 0; }
   .summary-list li {
     padding: 12px 16px;
     margin: 8px 0;
-    background: var(--navy-light);
+    background: var(--gold-bg);
     border-radius: 12px;
     font-size: 0.95em;
     line-height: 1.7;
     border-left: 4px solid var(--gold);
   }
-  .summary-list li strong { color: var(--gold); font-size: 1em; }
+  .summary-list li strong { color: var(--navy); font-size: 1em; }
 
   /* テーブル */
-  table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 12px 0; font-size: 0.9em; border-radius: 12px; overflow: hidden; border: 1px solid rgba(197,165,90,0.3); }
-  th { background: var(--gold-dark); color: white; padding: 12px 14px; text-align: left; font-weight: 600; font-size: 0.85em; }
-  td { padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,0.05); background: var(--navy-mid); }
+  table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 12px 0; font-size: 0.9em; border-radius: 12px; overflow: hidden; border: 1px solid #e0e0e0; }
+  th { background: var(--navy); color: white; padding: 12px 14px; text-align: left; font-weight: 600; font-size: 0.85em; }
+  td { padding: 12px 14px; border-bottom: 1px solid #f0f0f0; }
   tr:last-child td { border-bottom: none; }
-  tr:nth-child(even) td { background: var(--navy-light); }
-  td strong { color: var(--gold); }
+  tr:nth-child(even) td { background: #fafafa; }
+  td strong { color: var(--navy); }
 
   /* アラートボックス */
   .alert {
@@ -117,11 +117,11 @@
     line-height: 1.7;
   }
   .alert-warn { background: var(--orange-light); border: 2px solid #ff9800; }
-  .alert-warn strong { color: #ffb74d; }
+  .alert-warn strong { color: var(--orange); }
   .alert-danger { background: var(--red-light); border: 2px solid #ef5350; }
-  .alert-danger strong { color: #ef5350; }
+  .alert-danger strong { color: var(--red); }
   .alert-info { background: var(--gold-bg); border: 2px solid var(--gold); }
-  .alert-info strong { color: var(--gold); }
+  .alert-info strong { color: var(--gold-dark); }
 
   /* ステップ */
   .steps { list-style: none; padding: 0; }
@@ -129,7 +129,7 @@
     position: relative;
     padding: 14px 16px 14px 56px;
     margin: 10px 0;
-    background: var(--navy-light);
+    background: #fafafa;
     border-radius: 12px;
     font-size: 0.95em;
     min-height: 48px;
@@ -161,22 +161,22 @@
     margin: 8px 0;
     line-height: 1.7;
   }
-  .ok-box { background: var(--green-light); border: 2px solid #4caf50; }
-  .ok-box .label { color: #66bb6a; font-weight: 800; font-size: 1.1em; display: block; margin-bottom: 4px; }
+  .ok-box { background: var(--green-light); border: 2px solid #66bb6a; }
+  .ok-box .label { color: var(--green); font-weight: 800; font-size: 1.1em; display: block; margin-bottom: 4px; }
   .ng-box { background: var(--red-light); border: 2px solid #ef5350; }
-  .ng-box .label { color: #ef5350; font-weight: 800; font-size: 1.1em; display: block; margin-bottom: 4px; }
+  .ng-box .label { color: var(--red); font-weight: 800; font-size: 1.1em; display: block; margin-bottom: 4px; }
 
   /* Q&A */
   .qa-item {
     margin: 12px 0;
     border-radius: 12px;
     overflow: hidden;
-    border: 1px solid rgba(197,165,90,0.3);
+    border: 1px solid #e0e0e0;
   }
   .qa-q {
     font-weight: 700;
-    color: var(--navy);
-    background: var(--gold);
+    color: white;
+    background: var(--navy);
     padding: 12px 16px;
     font-size: 0.9em;
   }
@@ -184,10 +184,10 @@
     padding: 14px 16px;
     font-size: 0.9em;
     color: var(--text);
-    background: var(--navy-light);
+    background: white;
     line-height: 1.8;
   }
-  .qa-a strong { color: var(--gold); }
+  .qa-a strong { color: var(--navy); }
 
   /* フロー図 */
   .flow { margin: 16px 0; }
@@ -199,14 +199,13 @@
     border-radius: 14px;
     color: white;
   }
-  .flow-blue { background: var(--navy-light); border: 1px solid var(--gold); }
+  .flow-blue { background: var(--navy); }
   .flow-orange { background: var(--gold-dark); }
   .flow-green { background: var(--green); }
   .flow-num {
     width: 36px;
     height: 36px;
-    background: var(--gold);
-    color: var(--navy) !important;
+    background: rgba(255,255,255,0.25);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -229,7 +228,7 @@
   /* セクション区切り */
   .divider {
     height: 4px;
-    background: linear-gradient(90deg, var(--gold) 0%, transparent 100%);
+    background: linear-gradient(90deg, var(--navy) 0%, transparent 100%);
     border-radius: 4px;
     margin: 8px 0;
     opacity: 0.3;
@@ -395,11 +394,11 @@
 
   <p><strong>トッピーズは②の現地払いを選択してください。</strong></p>
 
-  <div class="ok-box" style="background:var(--gold-bg); border-color:var(--gold);">
-    <span class="label" style="color:var(--gold);">② 現地払い ← トッピーズはこちら</span>
+  <div class="ok-box" style="background:var(--gold-bg); border-color:var(--gold-dark);">
+    <span class="label" style="color:var(--gold-dark);">② 現地払い ← トッピーズはこちら</span>
     器具代も含めて<strong>全額を当日施設窓口でまとめて支払い</strong>。当日の実人数で精算。事前の支払いがないため、キャンセル時の返金問題はありません。
   </div>
-  <div style="margin-top:8px; padding:12px 16px; background:var(--navy-light); border-radius:12px; font-size:0.85em; color:var(--text-light); border:1px solid rgba(197,165,90,0.2);">
+  <div style="margin-top:8px; padding:12px 16px; background:#fafafa; border-radius:12px; font-size:0.85em; color:var(--text-light); border:1px solid #e0e0e0;">
     <strong>参考：① 前払い</strong> — 器具代＋最低1人分の利用料を事前に支払い。当日に人数が増えた場合は追加支払い。※前払いの場合、キャンセルしても返金はありません。
   </div>
 
